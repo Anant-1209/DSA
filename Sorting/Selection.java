@@ -1,20 +1,30 @@
 import java.util.*;
 
-public class Insertion {
+public class Selection {
 
-    public static void insertionSort(int arr[]) {
-        int i, j, key;
+    public static void selectionSort(int arr[]) {
         int n = arr.length;
-        for (i = 1; i < n; i++) {
-            key = arr[i];
-            j = i - 1;
+        int i, j, min_idx;
+        for (i = 0; i < n - 1; i++) {
+            min_idx = i;
+            for (j = i + 1; j < n; j++) {
+                if (arr[j] < arr[min_idx]) {
+                    min_idx = j;
 
-            while (j >= 0 && arr[j] > key) {
-                arr[j + 1] = arr[j];
-                j = j - 1;
+                }
+
             }
-            arr[j + 1] = key;
+            if (min_idx != i) {
+                swap(arr, min_idx, i);
+            }
+
         }
+    }
+
+    public static void swap(int arr[], int n1, int n2) {
+        int temp = arr[n1];
+        arr[n1] = arr[n2];
+        arr[n2] = temp;
     }
 
     public static int[] getInputArray(Scanner sc) {
@@ -37,7 +47,7 @@ public class Insertion {
         Scanner sc = new Scanner(System.in);
         int[] arr = getInputArray(sc);
         if (arr != null) {
-            insertionSort(arr);
+            selectionSort(arr);
             System.out.print("Sorted array elements are: ");
             for (int j = 0; j < arr.length; j++) {
                 System.out.print(arr[j] + " ");
@@ -46,4 +56,5 @@ public class Insertion {
         }
 
     }
+
 }
